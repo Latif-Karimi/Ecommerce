@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* font-family: 'Playfair Display', serif;
+font-family: 'Poppins', sans-serif; */
+
+/* navbar css */
+
+.navbar{
+  font-family: "Poppins", sans-serif ;
+  font-size: 17px;
+  line-height: 25 px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px -6px gray;
+  border-bottom: solid gray !important;
+  /* --webkit-box-shadow:0 8px 6px -6px gray;  */
+}
+.nav-link{
+  font-style: 300 !important;
+}
+.active{
+  border-bottom: 2px solid black;
+}
+.navbar-brand{
+  font-weight: 900;
+  font-family:"roboto",sans-serif ;
+  letter-spacing: 5px;
+}
+/* ---------Footer---------- */
+.footer{
+  color: white;
+  padding: 25px;
+  background: linear-gradient(to right, #5c5b5b,rgb(22, 69, 144));
+}
+.footer a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+.footer a:hover{
+  color: antiquewhite;
+  border-bottom: 1px solid #ffefba;
+}
+/* ----------Page Not Found------------ */
+
+.pnf{
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pnf-title{
+  font-size: 100px;
+  font-weight: 700;
+}
+.pnf-heading{
+  font-weight: normal;
+}
+.pnf-btn{
+  color: black;
+  border: 1px solid black;
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 10px;
+}

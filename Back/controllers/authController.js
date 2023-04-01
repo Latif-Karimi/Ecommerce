@@ -22,9 +22,9 @@ export const registerControler = async (req, res) => {
             return res.send({ error: "Phone number is Required" })
         }
 
-        const exitingUser = await userModel.findOne({ email })
+        const existingUser = await userModel.findOne({ email })
         //existing user
-        if (exitingUser) {
+        if (existingUser) {
             return res.status(200).send({
                 success: true,
                 message: "User already exist please login"
