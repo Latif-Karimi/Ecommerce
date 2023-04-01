@@ -3,6 +3,6 @@ import {Layout} from '../components/Layout'
 
 export const HomePage = () => {
   return (
-    <Layout>HomePage</Layout>
+    <Layout title={"Best offer"}>HomePage</Layout>
   )
 }

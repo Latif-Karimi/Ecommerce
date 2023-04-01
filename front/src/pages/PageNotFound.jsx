@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export const PageNotFound = () => {
   return (
-    <Layout>
+    <Layout title={"Page not found - Go back!"}>
       <div className='pnf'>
         <h1 className='pnf-title'>404</h1>
         <h2 className='pnf-heading'>Ooops ! Page Not Found</h2>
