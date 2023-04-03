@@ -6,7 +6,7 @@ export const Footer = () => {
     <div className="footer">
       {" "}
       <h4 className="text-center">
-        All Right Reserved &copy; Practice Project
+        All Right Reserved &copy; Karimi Project.
       </h4>
       <p className="text-center mt-3">
         <Link to="/about">About</Link>

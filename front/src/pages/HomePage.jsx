@@ -1,8 +1,11 @@
-import React from 'react'
-import {Layout} from '../components/Layout'
+import React from "react";
+import { Layout } from "../components/Layout";
+import { useAuth } from "../context/auth";
 
 export const HomePage = () => {
-  return (
-    <Layout title={"Best offer"}>HomePage</Layout>
-  )
-}
+  const [auth,setAuth]= useAuth()
+  return (<Layout title={"Best offer"}>
+    <h1>HomePage</h1>
+    <pre>{JSON.stringify(auth,null,4)}</pre>
+    </Layout>);
+};

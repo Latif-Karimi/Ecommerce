@@ -21,12 +21,13 @@
 }
 .form-container form input{
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid #000;
     border-radius: 0;
+    width: 250px;
 }
 .form-container form button{
     border: 1px solid black;
-    border-radius: 0;
+    border-radius: 5px;
     background: linear-gradient(to right, #5c5b5b,rgb(22, 69, 144));
     color: white;
     width: 250px;

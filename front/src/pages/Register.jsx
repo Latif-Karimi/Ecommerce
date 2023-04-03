@@ -64,7 +64,7 @@ export const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-control"
                 id="exampleInputEmail"
-                placeholder="Enter YOur Email"
+                placeholder="Enter Your Email"
                 required
               />
             </div>
@@ -101,7 +101,7 @@ export const Register = () => {
             
             <div className="col-sm-10">
               <input
-                type="number"
+                type="text"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="form-control"
