@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../pages/auth.css"
-import { Layout } from "../components/Layout";  
+import "../Auth/auth.css";
+import { Layout } from "../../components/Layout";  
 import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
@@ -11,6 +11,7 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+  const [answer, setAnswer] = useState("");
 
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ export const Register = () => {
    try {
     const response = await axios.post(
       "http://localhost:3001/api/auth/register",
-      {name,email,password,phone,address}
+      {name,email,password,phone,address,answer}
     );
     if(response.data.success){
       toast.success(response.data.message)
@@ -110,11 +111,22 @@ export const Register = () => {
                 required
               />
             </div>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="form-control"
+                id="exampleInputPhone"
+                placeholder="What is your best friend name?"
+                required
+              />
+            </div>
           </div>
           <div className="row mb-3">
             <div>
               <button type="submit" className="btn btn-primary">
-                Submit
+                Register
               </button>
             </div>
           </div>
