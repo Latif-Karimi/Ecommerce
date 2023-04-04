@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "../Auth/auth.css";
-import { Layout } from "../../components/Layout";
+import { Layout } from "../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -72,18 +73,22 @@ export const Login = () => {
             </div>
           </div>
 
-          <div className="row mb-3">
+          <div className="row mb-1">
             <div>
               <button type="submit" className="btn btn-primary">
                 Login
               </button>
-              </div>
-              <div className="mb-4">
-              <button type="button" className="btn btn-primary" onClick={()=>{navigate("/forgot-password")}}>
+            </div>
+            <div className="mb-1">
+              <Link className="link" to="/forgot-password">
                 Forgot Password
-              </button>
-              </div>
-            
+              </Link>
+            </div>
+            <div className="mb-1">
+              <Link className="link" to="/register">
+                Register!
+              </Link>
+            </div>
           </div>
         </form>
       </div>

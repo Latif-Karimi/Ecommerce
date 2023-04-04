@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../Auth/auth.css";
-import { Layout } from "../../components/Layout";  
-import toast from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import { Layout } from "../../components/Layout/Layout";
+import toast from "react-hot-toast";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 export const Register = () => {
   const [name, setName] = useState("");
@@ -15,35 +15,31 @@ export const Register = () => {
 
   const navigate = useNavigate();
 
-
   //form function submit
-  const hundleSubmit = async (e)=>{
-    e.preventDefault()
-   try {
-    const response = await axios.post(
-      "http://localhost:3001/api/auth/register",
-      {name,email,password,phone,address,answer}
-    );
-    if(response.data.success){
-      toast.success(response.data.message)
-      navigate('/login');
-    }else{
-      toast.error(response.data.message)
+  const hundleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/auth/register",
+        { name, email, password, phone, address, answer }
+      );
+      if (response.data.success) {
+        toast.success(response.data.message);
+        navigate("/login");
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Somthing went wrong");
     }
-   } catch (error) {
-    console.log(error)
-    toast.error("Somthing went wrong")
-    
-   }
-
-  }
+  };
   return (
     <Layout title={"Register"}>
       <div className="form-container">
         <form onSubmit={hundleSubmit}>
-        <h4 className="title">Register Page! </h4>
+          <h4 className="title">Register Page! </h4>
           <div className="row mb-3">
-            
             <div className="col-sm-10">
               <input
                 type="text"
@@ -56,8 +52,7 @@ export const Register = () => {
               />
             </div>
           </div>
-          <div className="row mb-3">
-            
+          <div className="row mb-1">
             <div className="col-sm-10">
               <input
                 type="email"
@@ -70,8 +65,7 @@ export const Register = () => {
               />
             </div>
           </div>
-          <div className="row mb-3">
-            
+          <div className="row mb-1">
             <div className="col-sm-10">
               <input
                 type="password"
@@ -84,8 +78,7 @@ export const Register = () => {
               />
             </div>
           </div>
-          <div className="row mb-3">
-            
+          <div className="row mb-1">
             <div className="col-sm-10">
               <input
                 type="text"
@@ -99,7 +92,6 @@ export const Register = () => {
             </div>
           </div>
           <div className="row mb-3">
-            
             <div className="col-sm-10">
               <input
                 type="text"
@@ -123,11 +115,16 @@ export const Register = () => {
               />
             </div>
           </div>
-          <div className="row mb-3">
+          <div className="row mb-1">
             <div>
               <button type="submit" className="btn btn-primary">
                 Register
               </button>
+              <div>
+                <Link className="link" to="/login">
+                  Login
+                </Link>
+              </div>
             </div>
           </div>
         </form>

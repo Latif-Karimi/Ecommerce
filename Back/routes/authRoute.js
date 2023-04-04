@@ -18,9 +18,12 @@ router.post('/forgot-password',forgotPasswordControler)
 //test Route
 router.get("/test",requireSignIn,isAdmin, testController)
 
-//protected Route auth dahshboard
-router.get('/user-auth',requireSignIn,(req,res)=>{
+//protected User Route auth
+router.get('/user-auth',requireSignIn,(req,res)=>{ 
     res.status(200).send({ok:true})
 })
-
+//protected Admin Route auth
+router.get('/admin-auth',requireSignIn,isAdmin,(req,res)=>{
+    res.status(200).send({ok:true})
+})
 export default router;

@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import "../Auth/auth.css";
-import { Layout } from "../../components/Layout";
+import { Layout } from "../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [answer, setAnswer] = useState("");
- 
 
   const navigate = useNavigate();
- 
 
   //form function submit
   const hundleSubmit = async (e) => {
@@ -21,7 +19,7 @@ export const ForgotPassword = () => {
     try {
       const response = await axios.post(
         "http://localhost:3001/api/auth/forgot-password",
-        { email, newPassword,answer, }
+        { email, newPassword, answer }
       );
       if (response.data.success) {
         toast.success(response.data.message);
@@ -53,7 +51,7 @@ export const ForgotPassword = () => {
               />
             </div>
           </div>
-          
+
           <div className="row mb-3">
             <div className="col-sm-10">
               <input
@@ -82,8 +80,13 @@ export const ForgotPassword = () => {
           </div>
 
           <button type="submit" className="btn btn-primary">
-            Reset Password!
+            Reset!
           </button>
+          <div className="mb-4">
+            <Link className="link" to="/login">
+              Login
+            </Link>
+          </div>
         </form>
       </div>
     </Layout>

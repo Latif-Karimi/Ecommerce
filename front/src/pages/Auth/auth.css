@@ -49,4 +49,10 @@
   .forgot-btn:hover {
     color: white !important;
   }
+  .link{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: center;
+  }
   
