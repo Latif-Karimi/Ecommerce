@@ -110,7 +110,7 @@ export const productPhotoController = async (req, res) => {
 //Delete Product
 export const deleteProductController = async (req, res) => {
   try {
-    await productModel.findByIdAndDelete(req, params.pid).select("-photo");
+    await productModel.findByIdAndDelete(req.params.pid).select("-photo");
     res.status(200).send({
       success: true,
       message: "Product Deleted Successfully"
@@ -142,7 +142,7 @@ export const updateProductController = async (req, res) => {
         return res.status(500).send({ error: "Category is required" });
       case !quantity:
         return res.status(500).send({ error: "Quantity is required" });
-      case !photo && photo.size > 1000000:
+      case photo && photo.size > 1000000:
         return res
           .status(500)
           .send({ error: "Photo is required and should be less then 1mb" });

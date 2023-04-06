@@ -83,3 +83,8 @@ font-family: 'Poppins', sans-serif; */
   align-items: center;
   justify-content: center;
 }
+/* ----Product card----- */
+.product-link{
+  text-decoration: none !important;
+  color: black !important;
+}

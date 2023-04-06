@@ -4,12 +4,13 @@ import axios from "axios";
 import { Layout } from "../../components/Layout/Layout";
 import { AdminMenu } from "../../components/Layout/AdminMenu";
 import { Select } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const { Option } = Select;
 
-export const CreateProduct = () => {
+export const UpdatProduct = () => {
   const navigate = useNavigate();
+  const params = useParams();
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
@@ -18,6 +19,29 @@ export const CreateProduct = () => {
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
+  const [id, setId] = useState("");
+
+  //Get Single Product
+  const getSingProduct = async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/api/product/get-product/${params.slug}`
+      );
+      setCategory(data.product.category._id);
+      setDescription(data.product.description);
+      setPrice(data.product.price);
+      setQuantity(data.product.quantity);
+      setShipping(data.product.shipping);
+      setName(data.product.name);
+      setId(data.product._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getSingProduct();
+    //eslint-disable-next-line
+  }, []);
 
   //Get All Product
   const getAllProduct = async () => {
@@ -37,8 +61,8 @@ export const CreateProduct = () => {
     getAllProduct();
   }, []);
 
-  //Create product function
-  const handleCreate = async (e) => {
+  //Update product function
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       const producData = new FormData();
@@ -46,32 +70,49 @@ export const CreateProduct = () => {
       producData.append("description", description);
       producData.append("price", price);
       producData.append("quantity", quantity);
-      producData.append("photo", photo);
+      photo && producData.append("photo", photo);
       producData.append("category", category);
-      const { data } = await axios.post(
-        "http://localhost:3001/api/product/create-product",
+
+      const { data } = await axios.put(
+        `http://localhost:3001/api/product/update-product/${id}`,
         producData
       );
-      if (data.success) {
-        toast.success("Product created Successfully");
+      if (data?.success) {
+        toast.success("Product Updated Successfully!");
         navigate("/dashboard/admin/products");
       } else {
-        toast.error(data?.message);
+        toast.error("Error while Updating Product!");
+        
       }
     } catch (error) {
       console.log(error);
-      toast.error("Error on creating product");
+      toast.error("Error on Updating product");
     }
   };
+
+  //Delete Product
+  const handleDelete = async ()=>{
+    try {
+        let answer = window.prompt('Are you sure to delete this product?')
+        if(!answer) return
+        const {data} = await axios.delete(`http://localhost:3001/api/product/delete-product/${id}`)
+        toast.success("Product Deleted Successfully!")
+        navigate('/dashboard/admin/products')
+    } catch (error) {
+        console.log(error)
+        toast.error("Error while Deleting Product")
+        
+    }
+  }
   return (
-    <Layout title={"Creat-Producet"}>
+    <Layout title={"Update-Producet"}>
       <div className="container-fluid m-3 p-3 dashboard">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3"> 
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Create Product</h1>
+            <h1>Update Product</h1>
             <div className="m-1 w-75">
               <Select
                 bordered={false}
@@ -82,6 +123,7 @@ export const CreateProduct = () => {
                 onChange={(value) => {
                   setCategory(value);
                 }}
+                value={category}
               >
                 {categories?.map((c) => (
                   <Option key={c._id} value={c._id}>
@@ -102,10 +144,19 @@ export const CreateProduct = () => {
                 </label>
               </div>
               <div className="mb-3">
-                {photo && (
+                {photo ? (
                   <div className="text-center">
                     <img
                       src={URL.createObjectURL(photo)}
+                      alt="product_photo"
+                      height={"200px"}
+                      className="img img-responsive"
+                    />
+                  </div>
+                ) : (
+                  <div className="text-center">
+                    <img
+                      src={`http://localhost:3001/api/product/product-photo/${id}`}
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"
@@ -159,14 +210,20 @@ export const CreateProduct = () => {
                   onChange={(value) => {
                     setShipping(value);
                   }}
+                  value={shipping ? "Yes" : "No"}
                 >
                   <Option value="0">No</Option>
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleCreate}>
-                  Create Product
+                <button className="btn btn-primary" onClick={handleUpdate}>
+                  Update Product
+                </button>
+              </div>
+              <div className="mb-3">
+                <button className="btn btn-danger" onClick={handleDelete}>
+                  Delete Product
                 </button>
               </div>
             </div>

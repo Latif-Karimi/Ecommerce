@@ -43,8 +43,8 @@ export const CreateCategory = () => {
       const { data } = await axios.get(
         "http://localhost:3001/api/category/all-category"
       );
-      if (data.success) {
-        setCategories(data.category);
+      if (data?.success) {
+        setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
@@ -149,7 +149,7 @@ export const CreateCategory = () => {
             <Modal
               onCancel={() => setVisible(false)}
               footer={null}
-              visibble={visible}
+              open={visible}
             >
               <CategoryForm
                 value={updateName}
