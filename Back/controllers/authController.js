@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js"
 import { comparePassword, hashPassword } from "../utils/authUtils.js"
 import JWT from "jsonwebtoken"
 
+//Register 
 export const registerControler = async (req, res) => {
     try {
         const { name, email, password, phone, address, answer } = req.body
@@ -52,7 +53,7 @@ export const registerControler = async (req, res) => {
     }
 }
 
-//Post Login
+//Login
 export const loginControler = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -105,7 +106,7 @@ export const loginControler = async (req, res) => {
     }
 
 }
-//Forgot passwrod Controller
+//Forgot passwrod 
 export const forgotPasswordControler = async (req, res) => {
     try {
         const { email, answer, newPassword } = req.body;

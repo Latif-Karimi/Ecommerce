@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { SiTrustedshops } from "react-icons/si";
 import { useAuth } from "../context/auth";
 import { toast } from "react-hot-toast";
+import { SearchInput } from "./Form/SearchInput";
 
 export const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -13,7 +14,7 @@ export const Header = () => {
       token: "",
     });
     localStorage.removeItem("auth");
-    toast.success("Logout Sunccessfully!");
+    toast.success("Logout Successfully!");
   };
   return (
     <>
@@ -35,6 +36,7 @@ export const Header = () => {
               <SiTrustedshops /> -Commerce
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <SearchInput/>
               <li className="nav-item">
                 <NavLink to="/" className="nav-link">
                   Home

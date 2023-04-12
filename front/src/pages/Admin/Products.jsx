@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AdminMenu } from "../../components/Layout/AdminMenu";
-import {Layout} from "../../components/Layout/Layout";
+import { Layout } from "../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -31,24 +31,29 @@ export const Products = () => {
         <div className="col-md-3">
           <AdminMenu />
         </div>
-        <div className="col-md-9"></div>
-        <h1 className="text-center"> All Products List</h1>
-        <div className="d-flex">
-        {products?.map((p) => (
-          <Link key={p._id} to={`/dashboard/admin/product/${p.slug}`}
-          className="product-link"
-          >
-          <div className="card m-2" style={{ width: "18rem" }} >
-            <img src={`http://localhost:3001/api/product/product-photo/${p._id}`} 
-            className="card-img-top" alt={p.name} />
-            <div className="card-body">
-              <h5 className="card-title">{p.name}</h5>
-              <p className="card-text">{p.description}</p>
-            </div>
+        <div className="col-md-9">
+          <h1 className="text-center"> All Products List</h1>
+          <div className="d-flex">
+            {products?.map((p) => (
+              <Link
+                key={p._id}
+                to={`/dashboard/admin/product/${p.slug}`}
+                className="product-link"
+              >
+                <div className="card m-2" style={{ width: "18rem" }}>
+                  <img
+                    src={`http://localhost:3001/api/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{p.name}</h5>
+                    <p className="card-text">{p.description}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-          </Link>
-        ))}
-        
         </div>
       </div>
     </Layout>

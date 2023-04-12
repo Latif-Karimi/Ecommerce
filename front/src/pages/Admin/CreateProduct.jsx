@@ -156,9 +156,10 @@ export const CreateProduct = () => {
                   size="large"
                   showSearch
                   className="form-select mb-3"
-                  onChange={(value) => {
-                    setShipping(value);
-                  }}
+                  value={shipping}
+                  onChange={(e) => 
+                  setShipping(e.target.value)
+  }
                 >
                   <Option value="0">No</Option>
                   <Option value="1">Yes</Option>

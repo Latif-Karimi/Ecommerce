@@ -43,7 +43,7 @@ export const UpdatProduct = () => {
     //eslint-disable-next-line
   }, []);
 
-  //Get All Product
+  //Get All Category
   const getAllProduct = async () => {
     try {
       const { data } = await axios.get(

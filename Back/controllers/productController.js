@@ -1,3 +1,4 @@
+import { equal } from "assert";
 import productModel from "../models/productModel.js";
 import fs from "fs";
 import slugify from "slugify";
@@ -167,4 +168,118 @@ export const updateProductController = async (req, res) => {
       message: "Update Product Error",
     });
   }
+}
+//filters
+export const productFilterController = async (req, res) => {
+  try {
+
+    const { checked, radio } = req.body
+    let argument = {}
+    if (checked.length > 0) argument.category = checked
+    if (radio.length) argument.price = { $gte: radio[0], $lte: radio[1] }
+    //  gte=Greater than equal / lte=less than equal
+    const products = await productModel.find(argument);
+    res.status(200).send({
+      success: true,
+      products
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(400).send({
+      success: false,
+      message: "Fillter Product Error",
+      error
+    }
+    )
+
+  }
+}
+
+//product count
+export const productCountController = async (req, res) => {
+  try {
+    const total = await productModel.find({}).estimatedDocumentCount();
+    res.status(200).send({
+      message: true,
+      total
+    });
+  } catch (error) {
+    console.log(error)
+    res.status(400).send({
+      message: false,
+      message: "Product Count Error",
+      error
+    })
+
+  }
+}
+//product per page
+export const productListController = async (req, res) => {
+  try {
+    const perPage = 4;
+    const page = req.params.page ? req.params.page : 1;
+    const products = await productModel
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+    //mongos optoions
+    res.status(200).send({
+      success: true,
+      products,
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Product per page Error",
+      error,
+    });
+  }
+};
+//search product 
+export const searchProductController = async (req,res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await productModel.find({
+      $or: [
+        { name: { $regex: keyword, $options: "i" } },
+        { description: { $regex: keyword, $options: "i" } }
+      ]
+    }).select("-photo");
+    res.json(results);
+  } catch (error) {
+    console.log(error)
+    res.status(400).send({
+      success: false,
+      message: "Search product API Error",
+      error
+    })
+
+
+  }
+}
+//similar product
+export const smimilarProductController = async (req,res)=>{
+ try {
+  const {pid,cid} = req.params
+  const products = await productModel.find({
+    category:cid,
+    _id:{$ne:pid}
+  }).select("-photo").limit(3).populate("category");
+  res.status(200).send({
+    success:true,
+    products,
+  })
+ } catch (error) {
+  console.log(error)
+  send.status(400).send({
+    success:false,
+    message:"Error on simmilar Product",
+    error
+  })
+  
+ }
 }
