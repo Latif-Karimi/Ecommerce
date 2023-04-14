@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/auth";
+import {CartProvider} from "./context/cart"
 import {SearchProvider} from "./context/search"
 import 'antd/dist/reset.css';
 
@@ -15,8 +16,11 @@ root.render(
   <AuthProvider>
     <SearchProvider>
     <BrowserRouter>
+    <CartProvider>
       <Toaster />
       <App />
+    </CartProvider>
+      
       
     </BrowserRouter>
     </SearchProvider>

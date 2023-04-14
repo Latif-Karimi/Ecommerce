@@ -52,6 +52,7 @@ export const ProductDetail = () => {
           <h6>Description: {product.description}</h6>
           <h6>Price: {product.price}</h6>
           <h6>Category: {product?.category?.name}</h6>
+          <button className="btn btn-secondary ms-1">Add to Cart</button>
         </div>
       </div>
 
@@ -73,6 +74,7 @@ export const ProductDetail = () => {
                 <p className="card-text">{p.description.substring(0, 30)}...</p>
                 <p className="card-text">$ {p.price}</p>
                 <button className="btn btn-secondary ms-1">Add to Cart</button>
+                <button className="btn btn-primary ms-1">More Detail</button>
               </div>
             </div>
           ))}
