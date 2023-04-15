@@ -15,7 +15,7 @@ export const UserMenu = () => {
             Profile
           </NavLink>
           <NavLink
-            to="/dashboard/user/order"
+            to="/dashboard/user/orders"
             className="list-group-item list-group-item-action"
           >
             Orders
