@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Layout } from "../components/Layout/Layout";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
+import "../styles/ProductDetailsStyles.css";
 
 export const ProductDetail = () => {
+  const navigate = useNavigate();
   const params = useParams();
+  const [cart, setCart] = useCart();
   const [product, setProduct] = useState({});
   const [similarProduct, setSimilarProduct] = useState([]);
 
@@ -36,45 +41,70 @@ export const ProductDetail = () => {
   };
   return (
     <Layout>
-      <div className="row container mt-2">
+      <div className="row container product-details">
         <div className="col-md-6">
           <img
             src={`http://localhost:3001/api/product/product-photo/${product._id}`}
             className="card-img-top"
             alt={product.name}
-            height="300"
-            width={"350px"}
+            style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="col-md-6 ">
+        <div className="col-md-6 product-details-info ">
           <h1 className="text-center">Product Detail</h1>
           <h6>Name: {product.name}</h6>
           <h6>Description: {product.description}</h6>
           <h6>Price: {product.price}</h6>
           <h6>Category: {product?.category?.name}</h6>
-          <button className="btn btn-secondary ms-1">Add to Cart</button>
+          <button
+            className="btn btn-dark ms-1"
+            onClick={() => {
+              setCart([...cart, product]);
+              localStorage.setItem("cart", JSON.stringify([...cart, product]));
+              toast.success("Item Added to cart");
+            }}
+          >
+            ADD TO CART
+          </button>
         </div>
       </div>
 
-      <div className="row container similar-product">
+      <div className="row container similar-products">
         <h1>Similar Product</h1>
         {similarProduct.length < 1 && (
-          <p className="text-center">No Similar Products Found</p>
+          <h3 className="text-center text-danger ">No Similar Products Found!</h3>
         )}
         <div className="d-flex flex-wrap">
           {similarProduct?.map((p) => (
-            <div key={p._id} className="card m-2" style={{ width: "18rem" }}>
+            <div key={p._id} className="card m-2">
               <img
                 src={`http://localhost:3001/api/product/product-photo/${p._id}`}
                 className="card-img-top"
                 alt={p.name}
               />
               <div className="card-body">
-                <h5 className="card-title">{p.name}</h5>
-                <p className="card-text">{p.description.substring(0, 30)}...</p>
-                <p className="card-text">$ {p.price}</p>
-                <button className="btn btn-secondary ms-1">Add to Cart</button>
-                <button className="btn btn-primary ms-1">More Detail</button>
+                <div className="card-name-price">
+                  <h5 className="card-title">{p.name}</h5>
+                  <h5 className="card-title card-price">
+                    {p.price.toLocaleString("en-us", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
+                  </h5>
+                </div>
+                <p className="card-text">
+                    {p.description.substring(0, 30)}...
+                  </p>
+                <button
+                  className="btn btn-dark ms-1"
+                  onClick={() => {
+                    setCart([...cart, p]);
+                    localStorage.setItem("cart", JSON.stringify([...cart, p]));
+                    toast.success("Item Added to cart");
+                  }}
+                >
+                  ADD TO CART
+                </button>
               </div>
             </div>
           ))}

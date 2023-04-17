@@ -14,7 +14,7 @@ export const Search = () => {
               ? "No Products Found"
               : `Found ${values?.results.lenght}`}
           </h5>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap mt-4">
             {values?.results.map((p) => (
               <div key={p._id} className="card m-2" style={{ width: "18rem" }}>
                 <img

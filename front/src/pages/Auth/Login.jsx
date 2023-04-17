@@ -42,53 +42,48 @@ export const Login = () => {
   };
   return (
     <Layout title={"Register"}>
-      <div className="form-container">
+      <div className="form-container" style={{ minHeight: "80vh" }}>
         <form onSubmit={hundleSubmit}>
           <h4 className="title">Login Page! </h4>
 
-          <div className="row mb-3">
-            <div className="col-sm-10">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-control"
-                id="exampleInputEmail"
-                placeholder="Enter YOur Email"
-                required
-              />
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-sm-10">
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Enter Your Password"
-                required
-              />
-            </div>
+          <div className="mb-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail"
+              placeholder="Enter YOur Email"
+              required
+            />
           </div>
 
-          <div className="row mb-1">
-            <div>
-              <button type="submit" className="btn btn-primary">
-                Login
-              </button>
-            </div>
-            <div className="mb-1">
-              <Link className="link" to="/forgot-password">
-                Forgot Password
-              </Link>
-            </div>
-            <div className="mb-1">
-              <Link className="link" to="/register">
-                Register!
-              </Link>
-            </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Enter Your Password"
+              required
+            />
+          </div>
+
+          <div>
+            <button type="submit" className="btn btn-primary">
+              Login
+            </button>
+          </div>
+          <div className="mb-1">
+            <Link className="link" to="/forgot-password">
+              Forgot Password
+            </Link>
+          </div>
+          <div className="mb-1">
+            <Link className="link" to="/register">
+              Register!
+            </Link>
           </div>
         </form>
       </div>

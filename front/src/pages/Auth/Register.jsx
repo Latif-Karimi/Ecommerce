@@ -36,95 +36,90 @@ export const Register = () => {
   };
   return (
     <Layout title={"Register"}>
-      <div className="form-container">
+      <div className="form-container" style={{ minHeight: "80vh" }}>
         <form onSubmit={hundleSubmit}>
           <h4 className="title">Register Page! </h4>
-          <div className="row mb-3">
-            <div className="col-sm-10">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="form-control"
-                id="exampleInputName"
-                placeholder="Enter YOur Name"
-                required
-              />
-            </div>
+
+          <div className="mb-3">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form-control"
+              id="exampleInputName"
+              placeholder="Enter YOur Name"
+              required
+              autoFocus
+            />
           </div>
-          <div className="row mb-1">
-            <div className="col-sm-10">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-control"
-                id="exampleInputEmail"
-                placeholder="Enter Your Email"
-                required
-              />
-            </div>
+
+          <div className="mb-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail"
+              placeholder="Enter Your Email"
+              required
+            />
           </div>
-          <div className="row mb-1">
-            <div className="col-sm-10">
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Enter Your Password"
-                required
-              />
-            </div>
+
+          <div className="mb-3">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Enter Your Password"
+              required
+            />
           </div>
-          <div className="row mb-1">
-            <div className="col-sm-10">
-              <input
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                className="form-control"
-                id="exampleInputAddress"
-                placeholder="Enter Your Address"
-                required
-              />
-            </div>
+
+          <div className="mb-3">
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="form-control"
+              id="exampleInputAddress"
+              placeholder="Enter Your Address"
+              required
+            />
           </div>
-          <div className="row mb-3">
-            <div className="col-sm-10">
-              <input
-                type="text"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="form-control"
-                id="exampleInputPhone"
-                placeholder="Enter Your Phone Number"
-                required
-              />
-            </div>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                className="form-control"
-                id="exampleInputPhone"
-                placeholder="What is your best friend name?"
-                required
-              />
-            </div>
+
+          <div className="mb-3">
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="form-control"
+              id="exampleInputPhone"
+              placeholder="Enter Your Phone Number"
+              required
+            />
           </div>
-          <div className="row mb-1">
+          <div className="mb-3">
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              className="form-control"
+              id="exampleInputPhone"
+              placeholder="What is your best friend name?"
+              required
+            />
+          </div>
+
+          <div>
+            <button type="submit" className="btn btn-primary">
+              Register
+            </button>
             <div>
-              <button type="submit" className="btn btn-primary">
-                Register
-              </button>
-              <div>
-                <Link className="link" to="/login">
-                  Login
-                </Link>
-              </div>
+              <Link className="link" to="/login">
+                Login
+              </Link>
             </div>
           </div>
         </form>

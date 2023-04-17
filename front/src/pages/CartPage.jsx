@@ -5,7 +5,8 @@ import { useCart } from "../context/cart";
 import { useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import axios from "axios";
-import  toast  from "react-hot-toast";
+import toast from "react-hot-toast";
+import "../styles/CartStyles.css";
 
 export const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -81,39 +82,46 @@ export const CartPage = () => {
     }
   };
   return (
-    <Layout>
+    <Layout title={"Cart Page"}>
       <div className=" cart-page">
-        
-          <div className="col-12">
-            <h1 className="text-center bg-light p-2 mb-1">
-              {`Hello ${auth?.token && auth?.user.name}`}
-            </h1>
-            <h4 className="text-center">
-              {cart?.length
-                ? `You have ${cart.length} item/s in your cart ${
-                    auth?.token ? "" : "Please login to checkout"
-                  }`
-                : "Your cart is Empty!"}
-            </h4>
+        <div className="row">
+          <div className=" cart-page">
+            <div className="col-12">
+              <h1 className="text-center bg-light p-2 mb-1">
+                {!auth?.user
+                  ? "Hello Guest"
+                  : `Hello ${auth?.token && auth?.user.name}`}
+
+                <p className="text-center">
+                  {cart?.length
+                    ? `You have ${cart.length} item/s in your cart ${
+                        auth?.token ? "" : "Please login to checkout"
+                      }`
+                    : "Your cart is Empty!"}
+                </p>
+              </h1>
+            </div>
           </div>
-          <div className="container">
+        </div>
+        <div className="container">
           <div className="row">
-            <div className="col-md-8">
+            <div className="col-md-7 p-0 m-0">
               {cart?.map((p) => (
-                <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                <div className="row card flex-row" key={p._id}>
                   <div className="col-md-4">
                     <img
                       src={`http://localhost:3001/api/product/product-photo/${p._id}`}
                       className="card-img-top"
                       alt={p.name}
-                      width={"100px"}
-                      height={"100px"}
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
                   <div className="col-md-4">
-                    <h5>{p.name}</h5>
+                    <p>{p.name}</p>
                     <p>{p.description.substring(0, 30)}</p>
                     <p>Price: {p.price}</p>
+                  </div>
+                  <div className="col-md-4 cart-remove-btn">
                     <button
                       className="btn btn-danger"
                       onClick={() => removeCartItem(p._id)}
@@ -124,7 +132,7 @@ export const CartPage = () => {
                 </div>
               ))}
             </div>
-            <div className="col-4 text-center">
+            <div className="col-md-5 cart-summary">
               <h2>Cart Summary</h2>
               <p>Total | checkout | payment</p>
               <hr />
@@ -159,7 +167,7 @@ export const CartPage = () => {
                   )}
                 </div>
               )}
-              <div className="mt-2">
+              <div className="m-3">
                 {!clientToken || !auth?.token || !cart?.length ? (
                   ""
                 ) : (

@@ -4,6 +4,7 @@ import { Layout } from "../../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../../styles/Homepage.css";
 
 export const Products = () => {
   const [products, setProducts] = useState([]);
@@ -27,13 +28,13 @@ export const Products = () => {
   }, []);
   return (
     <Layout title="All products">
-      <div className="row">
+      <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3">
           <AdminMenu />
         </div>
         <div className="col-md-9">
           <h1 className="text-center"> All Products List</h1>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
                 key={p._id}

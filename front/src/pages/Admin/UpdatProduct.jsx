@@ -72,6 +72,7 @@ export const UpdatProduct = () => {
       producData.append("quantity", quantity);
       photo && producData.append("photo", photo);
       producData.append("category", category);
+      producData.append('shipping', shipping)
 
       const { data } = await axios.put(
         `http://localhost:3001/api/product/update-product/${id}`,

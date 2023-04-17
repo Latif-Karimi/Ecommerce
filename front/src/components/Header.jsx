@@ -8,6 +8,7 @@ import { useCategory } from "../hooks/useCategory";
 import { useCart } from "../context/cart";
 import { Badge } from "antd";
 
+
 export const Header = () => {
   const categories = useCategory();
   const [auth, setAuth] = useAuth();
@@ -24,7 +25,7 @@ export const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary ">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top ">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -38,9 +39,9 @@ export const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link to="/" className="navbar-brand">
-              <SiTrustedshops /> -Commerce
-            </Link>
+            <div className="navbar-brand "><SiTrustedshops /> -Commerce</div>
+             
+            
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
               <li className="nav-item">
@@ -51,7 +52,7 @@ export const Header = () => {
 
               <li className="nav-item dropdown">
                 <Link
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle cat"
                   to={"/categories"}
                   data-bs-toggle="dropdown"
                 >
@@ -59,14 +60,14 @@ export const Header = () => {
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to={"/categories"}>
+                    <Link className="dropdown-item all-cat" to={"/categories"}>
                       All categories
                     </Link>
                   </li>
                   {categories?.map((c) => (
                     <li key={c._id}>
                       <Link
-                        className="dropdown-item"
+                        className="dropdown-item all-cat"
                         to={`/category/${c.slug}`}
                       >
                         {c.name}
@@ -79,12 +80,12 @@ export const Header = () => {
               {!auth.user ? (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/register" className="nav-link" href="#">
+                    <NavLink to="/register" className="nav-link">
                       Register
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="/login" className="nav-link" href="#">
+                    <NavLink to="/login" className="nav-link" >
                       Login
                     </NavLink>
                   </li>
@@ -94,10 +95,10 @@ export const Header = () => {
                   <li className="nav-item dropdown">
                     <NavLink
                       className="nav-link dropdown-toggle"
-                      href="#"
+                      
                       role="button"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                      style={{ border: "none" }}
                     >
                       {auth?.user.name}
                     </NavLink>
@@ -116,7 +117,7 @@ export const Header = () => {
                         <NavLink
                           onClick={handleLogout}
                           to="/login"
-                          className="dropdown-item"
+                          className="dropdown-item "
                           href="#"
                         >
                           Logout
@@ -128,7 +129,7 @@ export const Header = () => {
               )}
               <li className="nav-item">
                 <Badge count={cart?.length} showZero>
-                  <NavLink to="/cart" className="nav-link">
+                  <NavLink to="/cart" className="nav-link all-cat">
                     Cart
                   </NavLink>
                 </Badge>

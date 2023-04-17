@@ -5,6 +5,7 @@ import { useAuth } from "../../context/auth";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+
 export const Profile = () => {
   //context
   const [auth, setAuth] = useAuth();
@@ -49,9 +50,9 @@ export const Profile = () => {
   };
   return (
     <Layout title={"Your-Profile"}>
-      <div className="container-fluid m-3 p-3">
+      <div className="container-fluid mt-5 p-3">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3 mt-5">
             <UserMenu />
           </div>
           <div className="col-md-9">
@@ -59,7 +60,7 @@ export const Profile = () => {
               <form onSubmit={hundleSubmit}>
                 <h4 className="title">User Profile! </h4>
                 <div className="row mb-3">
-                  <div className="col-sm-10">
+                  <div className="col-sm-10 ">
                     <input
                       type="text"
                       value={name}

@@ -34,12 +34,11 @@ export const ForgotPassword = () => {
   };
   return (
     <Layout title={"Reset-Password"}>
-      <div className="form-container">
+      <div className="form-container" style={{ minHeight: "80vh" }}>
         <form onSubmit={hundleSubmit}>
           <h4 className="title">Reset Password! </h4>
 
-          <div className="row mb-3">
-            <div className="col-sm-10">
+          <div className="mb-3">
               <input
                 type="email"
                 value={email}
@@ -50,10 +49,9 @@ export const ForgotPassword = () => {
                 required
               />
             </div>
-          </div>
+          
 
-          <div className="row mb-3">
-            <div className="col-sm-10">
+            <div className="mb-3">
               <input
                 type="text"
                 value={answer}
@@ -64,9 +62,8 @@ export const ForgotPassword = () => {
                 required
               />
             </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-sm-10">
+         
+            <div className="mb-3">
               <input
                 type="password"
                 value={newPassword}
@@ -77,7 +74,7 @@ export const ForgotPassword = () => {
                 required
               />
             </div>
-          </div>
+         
 
           <button type="submit" className="btn btn-primary">
             Reset!
