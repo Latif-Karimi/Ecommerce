@@ -1,10 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './db.js';
-import authRoute from './Back/routes/authRoute.js';
-import categoryRoutes from './Back/routes/categoryRoutes.js';
+import authRoute from './routes/authRoute.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 import cors from "cors"
-import productRoutes from "./Back/routes/productRoute.js"
+import productRoutes from "./routes/productRoute.js"
 import bodyParser from'body-parser';
 import path from "path"
 
