@@ -1,5 +1,5 @@
 import JWT from "jsonwebtoken";
-import userModel from "../models/userModel.js";
+import userModel from "../../models/userModel.js";
 
 //protected Routes token base
 
@@ -27,9 +27,9 @@ export const isAdmin = async (req, res, next) => {
     } catch (error) {
         console.log(error)
         res.status(401).send({
-            success:false,
+            success: false,
             error,
-            message:"Error Admin Midleware"
+            message: "Error Admin Midleware"
         })
 
     }

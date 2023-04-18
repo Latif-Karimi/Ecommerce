@@ -1,6 +1,6 @@
-import userModel from "../models/userModel.js"
-import orderModel from "../models/orderModel.js"
-import { comparePassword, hashPassword } from "../utils/authUtils.js"
+import userModel from "../../models/userModel.js"
+import orderModel from "../../models/orderModel.js"
+import { comparePassword, hashPassword } from "../../utils/authUtils.js"
 import JWT from "jsonwebtoken"
 
 //Register
@@ -202,13 +202,13 @@ export const getOrdersController = async (req, res) => {
     }
 }
 //All Orders for Admin
-export const allOrdersController = async (req,res)=>{
+export const allOrdersController = async (req, res) => {
     try {
         const orders = await orderModel
             .find({})
             .populate("products", "-photo")
             .populate("buyer", "name")
-            .sort({createdAt: "-1"})
+            .sort({ createdAt: "-1" })
         res.json(orders);
 
     } catch (error) {
@@ -222,27 +222,27 @@ export const allOrdersController = async (req,res)=>{
     }
 }
 //Order Status
-export const orderStatusController = async (req,res)=>{
-    try { 
-        const {orderId} = req.params;
-        const {status} = req.body;
-        const orders = await orderModel.findByIdAndUpdate(orderId,{status},{new:true})
+export const orderStatusController = async (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const { status } = req.body;
+        const orders = await orderModel.findByIdAndUpdate(orderId, { status }, { new: true })
         res.json(orders)
     } catch (error) {
         console.log(error)
         res.status(500).send({
-            success:false,
-            message:"Error in Order Status",
+            success: false,
+            message: "Error in Order Status",
             error
         })
-        
+
     }
 }
 //All users for Admin
-export const allUsersController = async (req,res)=>{
+export const allUsersController = async (req, res) => {
     try {
         const users = await userModel.find({}).sort({ createdAt: -1 });
-        res.json({users});
+        res.json({ users });
     } catch (error) {
         console.log(error)
         res.status(500).send({

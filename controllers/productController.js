@@ -1,8 +1,8 @@
-import orderModel from "../models/orderModel.js";
-import productModel from "../models/productModel.js";
+import orderModel from "../../models/orderModel.js";
+import productModel from "../../models/productModel.js";
 import fs from "fs";
 import slugify from "slugify";
-import categoryModel from "../models/categoryModel.js";
+import categoryModel from "../../models/categoryModel.js";
 import braintree from "braintree";
 import dotenv from "dotenv"
 
