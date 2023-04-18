@@ -66,7 +66,7 @@ export const getProductController = async (req, res) => {
       .find({})
       .populate('category')
       .select("-photo")
-      .sort({ createAt: -1 });
+      .sort({ createdAt: -1 });
     res.status(200).send({
       success: true,
       countTotal: products.length,

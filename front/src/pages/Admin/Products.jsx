@@ -28,8 +28,8 @@ export const Products = () => {
   }, []);
   return (
     <Layout title="All products">
-      <div className="container-fluid row mt-3 home-page">
-        <div className="col-md-3">
+      <div className="container-fluid row home-page">
+        <div className="col-md-3 filters">
           <AdminMenu />
         </div>
         <div className="col-md-9">

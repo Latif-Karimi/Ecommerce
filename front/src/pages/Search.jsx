@@ -1,14 +1,19 @@
 import React from "react";
-import {Layout} from "./../components/Layout/Layout";
+import { Layout } from "./../components/Layout/Layout";
 import { useSearch } from "../context/search";
+import toast from "react-hot-toast";
+import { useCart } from "../context/cart";
+import { useNavigate } from "react-router-dom";
 
 export const Search = () => {
-    const [values,setValues] = useSearch()
+  const [values, setValues] = useSearch();
+  const [cart, setCart] = useCart();
+  const navigate = useNavigate();
   return (
     <Layout title={"Search Results"}>
-      <div className="container">
-        <div className="text-center">
-          <h1>Search Result</h1>
+      <div className="container home-page">
+        <div>
+          <h1 className="text-center">Search Result</h1>
           <h5>
             {values?.results.lenght < 1
               ? "No Products Found"
@@ -27,11 +32,33 @@ export const Search = () => {
                   <p className="card-text">
                     {p.description.substring(0, 30)}...
                   </p>
-                  <p className="card-text">$ {p.price}</p>
-                  <button className="btn btn-primary ms-1">More Details</button>
-                  <button className="btn btn-secondary ms-1">
-                    Add to Cart
-                  </button>
+                  <h5 className="card-title card-price">
+                    {p.price.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
+                  </h5>
+                  <div className="card-name-price">
+                    <button
+                      className="btn btn-info ms-1 more"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      More Details
+                    </button>
+                    <button
+                      className="btn btn-outline-success ms-1 cart"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item Added to cart");
+                      }}
+                    >
+                      ADD TO CART
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

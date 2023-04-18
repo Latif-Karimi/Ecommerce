@@ -65,7 +65,7 @@ export const CreateProduct = () => {
   };
   return (
     <Layout title={"Creat-Producet"}>
-      <div className="container-fluid m-3 p-3 dashboard">
+      <div className="container-fluid p-3 margin-top">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
@@ -156,10 +156,10 @@ export const CreateProduct = () => {
                   size="large"
                   showSearch
                   className="form-select mb-3"
-                  value={shipping}
-                  onChange={(e) => 
-                  setShipping(e.target.value)
-  }
+                  onChange={(value) => {
+                    setShipping(value);
+                  }}
+                  value={shipping ? "Yes" : "No"}
                 >
                   <Option value="0">No</Option>
                   <Option value="1">Yes</Option>

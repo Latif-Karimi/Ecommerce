@@ -94,7 +94,7 @@ export const UpdatProduct = () => {
   //Delete Product
   const handleDelete = async ()=>{
     try {
-        let answer = window.prompt('Are you sure to delete this product?')
+        let answer = window.prompt('Are you sure to delete this product? Yes / No')
         if(!answer) return
         const {data} = await axios.delete(`http://localhost:3001/api/product/delete-product/${id}`)
         toast.success("Product Deleted Successfully!")

@@ -5,6 +5,7 @@ import authRoute from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import cors from "cors"
 import productRoutes from "./routes/productRoute.js"
+import bodyParser from'body-parser';
 
 //configure env
 dotenv.config();
@@ -19,9 +20,10 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 //middelwares
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors())
 app.use(express.json());
-
 
 // //rest API
 // app.get('/', (req, res) => {
@@ -34,5 +36,5 @@ app.use('/api/category', categoryRoutes);
 app.use("/api/product",productRoutes )
 
 app.listen(PORT, () => {
-  // console.log(`Server is Running on Port ${PORT}`);
+  console.log(`Server is Running on Port ${PORT}`);
 });

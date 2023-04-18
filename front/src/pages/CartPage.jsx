@@ -83,21 +83,48 @@ export const CartPage = () => {
   };
   return (
     <Layout title={"Cart Page"}>
-      <div className=" cart-page">
+      <div className=" cart-page ">
         <div className="row">
           <div className=" cart-page">
             <div className="col-12">
-              <h1 className="text-center bg-light p-2 mb-1">
+              <h1
+                className="text-center bg-light p-2 mb-1"
+                style={{ color: "gray", fontFamily: "Playfair Display, serif" }}
+              >
                 {!auth?.user
                   ? "Hello Guest"
                   : `Hello ${auth?.token && auth?.user.name}`}
 
                 <p className="text-center">
-                  {cart?.length
-                    ? `You have ${cart.length} item/s in your cart ${
-                        auth?.token ? "" : "Please login to checkout"
-                      }`
-                    : "Your cart is Empty!"}
+                  {cart?.length ? (
+                    <>
+                      You have {cart.length} item(s) in your cart. Please
+                      proceed to payment.
+                      {auth?.token ? (
+                        ""
+                      ) : (
+                        <span>
+                          Please login to checkout
+                          <button
+                            onClick={() =>
+                              navigate("/login", { state: "/cart" })
+                            }
+                            style={{
+                              border: "none",
+                              marginLeft: "10px",
+                              color: "orange",
+                              fontSize: "20px",
+                              textDecoration: "underline",
+                            }}
+                          >
+                            Login
+                          </button>
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    "Your cart is Empty!"
+                  )}
                 </p>
               </h1>
             </div>
@@ -105,9 +132,9 @@ export const CartPage = () => {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-md-7 p-0 m-0">
+            <div className="col-md-7 p-0 m-0 ">
               {cart?.map((p) => (
-                <div className="row card flex-row" key={p._id}>
+                <div className="row card flex-row border shadow" key={p._id}>
                   <div className="col-md-4">
                     <img
                       src={`http://localhost:3001/api/product/product-photo/${p._id}`}
@@ -117,9 +144,16 @@ export const CartPage = () => {
                     />
                   </div>
                   <div className="col-md-4">
-                    <p>{p.name}</p>
+                    <p
+                      className="mt-3"
+                      style={{ fontSize: "20px", fontWeight: "bold" }}
+                    >
+                      {p.name}
+                    </p>
                     <p>{p.description.substring(0, 30)}</p>
-                    <p>Price: {p.price}</p>
+                    <p style={{ color: "green", fontWeight: "bold" }}>
+                      Price: {p.price}
+                    </p>
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     <button
@@ -133,8 +167,8 @@ export const CartPage = () => {
               ))}
             </div>
             <div className="col-md-5 cart-summary">
-              <h2>Cart Summary</h2>
-              <p>Total | checkout | payment</p>
+              <h2 style={{ color: "gray", fontFamily: "Playfair Display, serif" }}>Cart Summary</h2>
+              <p style={{ fontWeight: "bold" }}>Total | checkout | payment</p>
               <hr />
               <h4>Total:{totalPrice()} </h4>
               {auth?.user?.address ? (
@@ -159,7 +193,7 @@ export const CartPage = () => {
                     </button>
                   ) : (
                     <button
-                      className="btn btn-outline-warning"
+                      className="btn btn-outline-warning "
                       onClick={() => navigate("/login", { state: "/cart" })}
                     >
                       Please Login to Checkout!

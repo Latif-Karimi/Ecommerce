@@ -47,7 +47,7 @@ export const Register = () => {
               onChange={(e) => setName(e.target.value)}
               className="form-control"
               id="exampleInputName"
-              placeholder="Enter YOur Name"
+              placeholder="Enter Your Name"
               required
               autoFocus
             />

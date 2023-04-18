@@ -113,7 +113,7 @@ export const HomePage = () => {
   };
   return (
     <Layout title={"Best offer"}>
-      <div className="container-fluid row mt-5 home-page">
+      <div className="container-fluid row home-page">
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">

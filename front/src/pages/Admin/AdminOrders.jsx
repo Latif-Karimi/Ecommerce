@@ -4,8 +4,9 @@ import { Layout } from "../../components/Layout/Layout";
 import moment from "moment";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
-import { Select } from "antd";
-import { Option } from "antd/es/mentions";
+import { Select } from 'antd';
+
+const { Option } = Select;
 
 export const AdminOrders = () => {
   const [status, setStatus] = useState([
@@ -48,7 +49,7 @@ export const AdminOrders = () => {
 
   return (
     <Layout title={"All Orders Data"}>
-      <div className="row">
+      <div className="row margin-top dashboard">
         <div className="col-md-3">
           <AdminMenu />
         </div>
@@ -63,7 +64,7 @@ export const AdminOrders = () => {
                       <th scope="col">#</th>
                       <th scope="col">Status</th>
                       <th scope="col">Buyer</th>
-                      <th scope="col">Orders</th>
+                      <th scope="col">Orders Status Updated</th>
                       <th scope="col">Payment</th>
                       <th scope="col">Quantity</th>
                     </tr>
@@ -85,7 +86,7 @@ export const AdminOrders = () => {
                         </Select>
                       </td>
                       <td>{o?.buyer?.name}</td>
-                      <td>{moment(o?.createAt).fromNow()}</td>
+                      <td>{moment(o?.updatedAt).fromNow()}</td>
                       <td>{o?.payment.success ? "Success" : "Failed"}</td>
                       <td>{o?.products?.length}</td>
                     </tr>
@@ -99,8 +100,7 @@ export const AdminOrders = () => {
                           src={`http://localhost:3001/api/product/product-photo/${p._id}`}
                           className="card-img-top"
                           alt={p.name}
-                          width={"100px"}
-                          height={"100px"}
+                          style={{ objectFit: "cover" }}
                         />
                       </div>
                       <div className="col-md-4">

@@ -177,3 +177,11 @@ font-family: 'Poppins', sans-serif; */
 .admin-dash{
   margin-top: 7rem;
 }
+/* ------All Admin order----- */
+.margin-top{
+  margin-top: 8rem;
+}
+.margin-top h1{
+  color: gray;
+  font-family: "Playfair Display", serif;
+}

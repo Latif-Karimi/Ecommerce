@@ -3,7 +3,7 @@ import orderModel from "../models/orderModel.js"
 import { comparePassword, hashPassword } from "../utils/authUtils.js"
 import JWT from "jsonwebtoken"
 
-//Register 
+//Register
 export const registerControler = async (req, res) => {
     try {
         const { name, email, password, phone, address, answer } = req.body
@@ -236,5 +236,20 @@ export const orderStatusController = async (req,res)=>{
             error
         })
         
+    }
+}
+//All users for Admin
+export const allUsersController = async (req,res)=>{
+    try {
+        const users = await userModel.find({}).sort({ createdAt: -1 });
+        res.json({users});
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: "Geting Users Error",
+            error
+        })
+
     }
 }
