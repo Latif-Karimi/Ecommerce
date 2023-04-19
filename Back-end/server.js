@@ -1,14 +1,28 @@
 import express from 'express';
 import dotenv from 'dotenv';
+<<<<<<< HEAD:Back-end/server.js
 import connectDB from './config/db.js';
+=======
+import connectDB from './db.js';
+>>>>>>> ed0003345a5ecb36dcd672771da6140ca2e8eff8:server.js
 import authRoute from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import cors from "cors"
 import productRoutes from "./routes/productRoute.js"
 import bodyParser from'body-parser';
+<<<<<<< HEAD:Back-end/server.js
+=======
+import path from "path"
+import {fileURLToPath} from 'url';
+
+>>>>>>> ed0003345a5ecb36dcd672771da6140ca2e8eff8:server.js
 
 //configure env
 dotenv.config();
+
+//esmodeule fix
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //database confiq
 connectDB();
