@@ -114,9 +114,10 @@ export const HomePage = () => {
   return (
     <Layout title={"Best offer"}>
       <div className="container-fluid row home-page">
-        <div className="col-md-3 filters">
-          <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
+        <div className="col-md-3 filters" >
+          <div className="slider">
+            <h4 className="text-center">Filter By Category</h4>
+          <div className="d-flex flex-column" >
             {categories?.map((c) => (
               <div key={c._id}>
                 <Checkbox
@@ -127,8 +128,8 @@ export const HomePage = () => {
               </div>
             ))}
           </div>
-          <h4 className="text-center mt-4">Filter By Price</h4>
-          <div className="d-flex flex-column ">
+          <h4 className="text-center mt-4" style={{color:"white"}}>Filter By Price</h4>
+          <div className="d-flex flex-column " style={{fontWeight:"bold",color:"white"}}>
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
                 <div key={p._id}>
@@ -137,6 +138,8 @@ export const HomePage = () => {
               ))}
             </Radio.Group>
           </div>
+          
+          
           <div className="d-flex flex-column ">
             <button
               className="btn btn-danger"
@@ -144,6 +147,7 @@ export const HomePage = () => {
             >
               Reset Filters
             </button>
+            </div>
           </div>
         </div>
         <div className="col-md-9">

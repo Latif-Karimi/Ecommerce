@@ -52,10 +52,11 @@ font-family: 'Poppins', sans-serif; */
   border-top-left-radius: 10px;
 }
 .navbar-brand{
-  font-weight: 900;
+  font-weight: 700;
   font-family:"roboto",sans-serif ;
-  letter-spacing: 5px;
-  font-size: 2rem;
+  border-bottom: solid 4px ;
+  border-radius: 10px;
+  background-image: linear-gradient(0deg,#f6eff2 0%,#2b2c5a 100%);
 }
 .search-form {
   margin-right: 10px;
@@ -64,13 +65,14 @@ font-family: 'Poppins', sans-serif; */
 .search-form input {
   border: none;
   border-radius: 0;
-  width: 400px;
+  
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 .search-form button {
   background-color: #000000;
   border-radius: 0;
+  width: auto;
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
   color: white;
@@ -155,6 +157,7 @@ font-family: 'Poppins', sans-serif; */
 /* -------Dashboard-------- */
 .dashboard {
   margin-top: 100px !important;
+  
 }
 
 .dashboard-menu h4 {
@@ -185,3 +188,5 @@ font-family: 'Poppins', sans-serif; */
   color: gray;
   font-family: "Playfair Display", serif;
 }
+
+

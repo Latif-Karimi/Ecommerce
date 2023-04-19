@@ -57,22 +57,35 @@
   height: 300px !important;
 }
 /* ======filters==== */
+.slider{
+  position: sticky;
+  top: 7rem;
+  background: linear-gradient(to right, #292544,rgb(124, 128, 134));
+  border-radius: 10px;
+  
+  
+}
 .filters h4 {
   margin-top: 100px;
-  color: gray !important;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.337);
+  color: rgb(248, 243, 243) !important;
+  border-bottom: 1px solid rgb(245, 240, 240);
+  
 }
 
 .ant-checkbox-wrapper:first-of-type {
   margin-left: 8px;
+  font-weight: bold;
+  color: white;
 }
 
 .ant-checkbox-wrapper {
   margin: 2px;
+  
 }
 .ant-radio-wrapper {
   margin-bottom: 5px !important;
   margin-left: 10px;
+  color: white;
 }
 
 .filters button {
@@ -88,3 +101,4 @@
   font-weight: bold;
   font-size: 20px !important;
 }
+

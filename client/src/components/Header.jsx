@@ -8,7 +8,6 @@ import { useCategory } from "../hooks/useCategory";
 import { useCart } from "../context/cart";
 import { Badge } from "antd";
 
-
 export const Header = () => {
   const categories = useCategory();
   const [auth, setAuth] = useAuth();
@@ -25,7 +24,7 @@ export const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top ">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -39,9 +38,10 @@ export const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <div className="navbar-brand "><SiTrustedshops /> -Commerce</div>
-             
-            
+            <div className="navbar-brand ">
+            Karimi <SiTrustedshops /> -Commerce 
+            </div>
+
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
               <li className="nav-item">
@@ -85,7 +85,7 @@ export const Header = () => {
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="/login" className="nav-link" >
+                    <NavLink to="/login" className="nav-link">
                       Login
                     </NavLink>
                   </li>
@@ -95,7 +95,6 @@ export const Header = () => {
                   <li className="nav-item dropdown">
                     <NavLink
                       className="nav-link dropdown-toggle"
-                      
                       role="button"
                       data-bs-toggle="dropdown"
                       style={{ border: "none" }}

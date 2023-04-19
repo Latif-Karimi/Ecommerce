@@ -1,13 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import connectDB from './db.js';
+import connectDB from './config/db.js';
 import authRoute from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import cors from "cors"
 import productRoutes from "./routes/productRoute.js"
 import bodyParser from'body-parser';
-import path from "path"
-
 
 //configure env
 dotenv.config();
@@ -26,13 +24,11 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors())
 app.use(express.json());
-app.use(express.static(path.json(__filename, '../client/build')))
-
 
 // //rest API
-app.use('*',function(req,res){
-  res.sendFile(path.json(__dirname,'./client/build/index.html'))
-})
+// app.get('/', (req, res) => {
+//   res.send('<h1>Welcome to the E-commerce App</h1>');
+// });
 
 //routes
 app.use('/api/auth', authRoute);

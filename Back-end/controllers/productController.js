@@ -1,8 +1,8 @@
-import orderModel from "../../models/orderModel.js";
-import productModel from "../../models/productModel.js";
+import orderModel from "../models/orderModel.js";
+import productModel from "../models/productModel.js";
 import fs from "fs";
 import slugify from "slugify";
-import categoryModel from "../../models/categoryModel.js";
+import categoryModel from "../models/categoryModel.js";
 import braintree from "braintree";
 import dotenv from "dotenv"
 
@@ -110,7 +110,7 @@ export const productPhotoController = async (req, res) => {
       res.set('Content-Type', product.photo.contentType);
       return res.status(200).send(product.photo.data)
     }
-  } catch (error) {
+  } catch (error) { 
     console.log(error)
     res.status(500).send({
       success: false,
